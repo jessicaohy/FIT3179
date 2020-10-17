@@ -17,7 +17,8 @@ def cleanData(filename):
                 'tests_per_case', 'new_tests_per_thousand',
                 'positive_rate', 'tests_units', 'handwashing_facilities',
                 'total_cases_per_million', 'new_cases_per_million',
-                'total_deaths_per_million', 'new_deaths_per_million']
+                'total_deaths_per_million', 'new_deaths_per_million',
+                'total_cases']
     df.drop(dropList, inplace=True, axis=1) # axis = 1 drops column
 
     # remove na rows
@@ -30,8 +31,7 @@ def cleanData(filename):
     df = df[(df['date'].dt.year == 2020)]
 
     # group by location and month
-    df = df.groupby(['continent','location', 'date'], as_index=False).agg({'total_cases':'sum',
-                                                                           'new_cases':'sum',
+    df = df.groupby(['continent','location', 'date'], as_index=False).agg({'new_cases':'sum',
                                                                            'total_deaths':'sum',
                                                                            'new_deaths':'sum',
                                                                            'population':'mean',
