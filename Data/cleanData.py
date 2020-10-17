@@ -24,7 +24,10 @@ def cleanData(filename):
     df.dropna(subset=None, how='any', inplace=True, axis=0) # axis = 0 drops row
 
     # convert YYYY-MM-DD to YYYY-MM
-    df['date'] = pd.to_datetime(df['date']).dt.to_period('M')
+    df['date'] = pd.to_datetime(df['date']).dt.to_period('Y')
+
+    # remove dates that are not 2020
+    df = df[(df['date'].dt.year == 2020)]
 
     # group by location and month
     df = df.groupby(['continent','location', 'date'], as_index=False).agg({'total_cases':'sum',
