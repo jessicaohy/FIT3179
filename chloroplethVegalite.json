@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "COVID-19 Active Cases (2020)",
+  "width": 800,
+  "height": 600,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/ne_110m.json",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.NAME",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedCovidWorld.csv"
+        },
+        "key": "location",
+        "fields": ["new_cases", "population"]
+      }
+    },
+    {
+      "calculate": "datum.new_cases/datum.population * 100000",
+      "as": "Total Cases Per 100,000 Population"
+    }
+  ],
+  "projection": {"type": "equirectangular"},
+  "mark": {"type": "geoshape"},
+  "encoding": {
+    "color": {
+      "field": "Total Cases Per 100,000 Population",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+      {
+        "field": "Total Cases Per 100,000 Population",
+        "type": "quantitative",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {}
+}
