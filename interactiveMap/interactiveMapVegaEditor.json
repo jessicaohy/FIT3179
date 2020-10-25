@@ -1,199 +1,48 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "COVID-19 Cases (2020)",
   "width": 800,
   "height": 600,
-  "title": "COVID-19 Cases (2020)",
   "data": {
-    "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedCovidWorld.csv"
+    "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/chloroplethMap/ne_110m.json",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
   },
-  "params": [
-    {
-      "name": "Case_Above",
-      "value": 0,
-      "bind": {
-        "input": "range",
-        "min": 0,
-        "max": 10000000,
-        "step": 100000,
-        "name": "Minimum Cases: "
-      }
-    },
-    {
-      "name": "Continent_selection",
-      "bind": {
-        "input": "select",
-        "options": [
-          null,
-          "Africa",
-          "Asia",
-          "Europe",
-          "North America",
-          "Oceania",
-          "South America"
-        ],
-        "labels": [
-          "Show All",
-          "Africa",
-          "Asia",
-          "Europe",
-          "North America",
-          "Oceania",
-          "South America"
-        ],
-        "name": "Continent Selection: "
-      }
-    }
-  ],
   "transform": [
-    {"filter": "datum.new_cases > 0"},
-    {"filter": "datum.new_deaths > 0"},
-    {"filter": "datum.new_cases > Case_Above"},
     {
-      "filter": "Continent_selection == null || datum.continent==Continent_selection"
+      "lookup": "properties.NAME",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedCovidWorld.csv"
+        },
+        "key": "location",
+        "fields": ["new_cases", "population"]
+      }
     },
     {
       "calculate": "datum.new_cases/datum.population * 100000",
-      "as": "Cases per 100,000 Population"
+      "as": "Total Cases Per 100,000 Population"
     }
   ],
+  "projection": {"type": "equirectangular"},
+  "mark": {"type": "geoshape"},
   "encoding": {
-    "x": {
-      "field": "new_cases",
+    "color": {
+      "field": "Total Cases Per 100,000 Population",
       "type": "quantitative",
-      "title": "Cases",
-      "axis": {"tickCount": 7},
-      "scale": {"type": "log", "domain": [1, 100000000]}
+      "scale": {
+      "type": "threshold",
+      "domain": [100, 1000, 2000, 3000],
+      "range": ["#B8F0E5", "#02A3A6", "#046173", "#013543"]
+}
     },
-    "y": {
-      "field": "new_deaths",
-      "type": "quantitative",
-      "title": "Deaths",
-      "axis": {"tickCount": 6},
-      "scale": {"type": "log", "domain": [1, 1000000]}
-    }
+    "tooltip": [
+      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+      {
+        "field": "Total Cases Per 100,000 Population",
+        "type": "quantitative",
+        "format": ".2f"
+      }
+    ]
   },
-  "layer": [
-    {
-      "selection": {
-        "continent_highlight": {
-          "type": "multi",
-          "fields": ["continent"],
-          "bind": "legend"
-        }
-      },
-      "mark": "circle",
-      "encoding": {
-        "size": {
-          "field": "population_density",
-          "type": "quantitative",
-          "scale": {
-            "type": "threshold",
-            "domain": [10, 100, 500, 1000, 5000],
-            "range": [10, 50, 150, 200, 300, 500]
-          },
-          "legend": {"format": ".1s"}
-        },
-        "color": {
-          "field": "continent",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "Africa",
-              "Asia",
-              "Europe",
-              "North America",
-              "Oceania",
-              "South America"
-            ],
-            "range": [
-              "#e41a1c",
-              "#984ea3",
-              "#ff7f00",
-              "#a6cee3",
-              "#377eb8",
-              "#a65628"
-            ]
-          }
-        },
-        "opacity": {
-          "condition": {"selection": "continent_highlight", "value": 0.6},
-          "value": 0.2
-        },
-        "tooltip": [
-          {"field": "location", "type": "nominal", "title": "Location"},
-          {
-            "field": "new_cases",
-            "type": "quantitative",
-            "format": ",",
-            "title": "Cases"
-          },
-          {
-            "field": "new_deaths",
-            "type": "quantitative",
-            "format": ",",
-            "title": "Deaths"
-          },
-          {
-            "field": "population_density",
-            "type": "quantitative",
-            "format": ",",
-            "title": "Population Density"
-          },
-          {
-            "field": "Cases per 100,000 Population",
-            "type": "quantitative",
-            "format": ".2f"
-          }
-        ]
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "baseline": "middle",
-        "dx": -12,
-        "fontSize": 11.5,
-        "fontStyle": "italic"
-      },
-      "encoding": {
-        "text": {"field": "location", "type": "nominal"},
-        "color": {"value": "black"},
-        "opacity": {
-          "condition": {
-            "test": "datum['location'] == 'China' || datum['location'] == 'Australia' || datum['location'] == 'United States of America' || datum['location'] == 'Fiji'",
-            "value": 1
-          },
-          "value": 0
-        },
-        "tooltip": [
-          {"field": "location", "type": "nominal", "title": "Location"},
-          {
-            "field": "new_cases",
-            "type": "quantitative",
-            "format": ",",
-            "title": "Cases"
-          },
-          {
-            "field": "new_deaths",
-            "type": "quantitative",
-            "format": ",",
-            "title": "Deaths"
-          },
-          {
-            "field": "population_density",
-            "type": "quantitative",
-            "format": ",",
-            "title": "Population Density"
-          },
-          {
-            "field": "Cases per 100,000 Population",
-            "type": "quantitative",
-            "format": ".2f"
-          }
-        ]
-      }
-    }
-  ],
   "config": {}
 }
