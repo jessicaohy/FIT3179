@@ -28,7 +28,12 @@
   "encoding": {
     "color": {
       "field": "Total Cases Per 100,000 Population",
-      "type": "quantitative"
+      "type": "quantitative",
+      "scale": {
+      "type": "threshold",
+      "domain": [100, 1000, 2000, 3000],
+      "range": ["#B8F0E5", "#02A3A6", "#046173", "#013543"]
+}
     },
     "tooltip": [
       {"field": "properties.NAME", "type": "nominal", "title": "Country"},
