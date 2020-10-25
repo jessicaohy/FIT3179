@@ -1,0 +1,24 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "COVID19 (2020)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedCovidWorld.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "median_age",
+      "type": "quantitative",
+      "axis": {"labelAngle": 0},
+      "title": "Median Age"
+    },
+    "y": {"field": "new_deaths", "type": "quantitative", "title": "Deaths"},
+    "color": {
+      "field": "new_deaths",
+      "type": "quantitative",
+      "title": "Deaths",
+      "scale": {"range": ["#C2DCF2", "#0583F2", "#0558F2", "#084296"]}
+    }
+  },
+  "config": {}
+}
