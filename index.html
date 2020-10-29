@@ -26,6 +26,9 @@
 
 <h2>Line Chart</h2>
 <div id="lineChart"></div>
+ 
+<h2>Line Chart</h2>
+<div id="stackedBarChart"></div>
   
 <script type="text/javascript">
   
@@ -52,6 +55,13 @@
   vegaEmbed('#lineChart', vis4).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
+  
+  var vis5 = "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/stackedBarChart/stackedBarVegaEditor.json"
+  
+   vegaEmbed('#stackedBarChart', vis5).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
   
 </script>
 
