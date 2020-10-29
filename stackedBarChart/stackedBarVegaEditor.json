@@ -5,7 +5,7 @@
   },
   "mark": "bar",
   "encoding": {
-    "x": {"field": "date", "type": "ordinal", "title": "date"},
+    "x": {"field": "median_age", "type": "quantitative"},
     "y": {"field": "new_cases", "type": "quantitative"},
     "color": {
       "field": "continent",
