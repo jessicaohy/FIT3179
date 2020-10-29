@@ -1,0 +1,14 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "COVID19 (2020)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedMonthCovidWorld.csv"
+  },
+  "mark": {"type": "line", "point": true},
+  "encoding": {
+    "x": {"field": "date"},
+    "y": {"field": "new_cases", "type": "quantitative"},
+    "color": {"field": "location", "type": "nominal"}
+  },
+  "config": {}
+}
