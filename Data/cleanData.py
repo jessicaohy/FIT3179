@@ -25,7 +25,8 @@ def cleanData(filename):
     df.dropna(subset=None, how='any', inplace=True, axis=0) # axis = 0 drops row
 
     # convert YYYY-MM-DD to YYYY-MM
-    df['date'] = pd.to_datetime(df['date']).dt.to_period('Y')
+    # change M to Y to get year
+    df['date'] = pd.to_datetime(df['date']).dt.to_period('M')
 
     # remove dates that are not 2020
     df = df[(df['date'].dt.year == 2020)]
@@ -48,7 +49,7 @@ def cleanData(filename):
                                                                            'hospital_beds_per_thousand':'mean'})
 
     # put into new file
-    newFileName = "cleanedCovidWorld.csv"
+    newFileName = "cleanedMonthCovidWorld.csv"
     df.to_csv(newFileName, index=False)
 
 
