@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedMonthCovidWorld.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "date", "type": "ordinal", "title": "date"},
+    "y": {"field": "new_cases", "type": "quantitative"},
+    "color": {
+      "field": "continent",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "Oceania",
+          "South America"
+        ],
+        "range": ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4", "#9467bd"]
+      },
+      "title": "continent"
+    }
+  },
+  "config": {}
+}
