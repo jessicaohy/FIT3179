@@ -84,6 +84,7 @@
       "mark": "circle",
       "encoding": {
         "size": {
+          "title": "Population Density",
           "field": "population_density",
           "type": "quantitative",
           "scale": {
@@ -94,6 +95,7 @@
           "legend": {"format": ".1s"}
         },
         "color": {
+          "title": "Continent",
           "field": "continent",
           "type": "nominal",
           "scale": {
