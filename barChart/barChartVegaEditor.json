@@ -14,7 +14,7 @@
       "title": "Median Age",
       "axis": {"tickCount": 4}
     },
-    "y": {"field": "new_deaths", "type": "quantitative", "title": "Deaths", "axis": {"tickCount": 7}, "scale": {"domain": [0, 220000]}},
+    "y": {"field": "new_deaths", "type": "quantitative", "title": "New Deaths", "axis": {"tickCount": 7}, "scale": {"domain": [0, 220000]}},
     "color": {"value": "#02A3A6"}
   },
   "config": {}
