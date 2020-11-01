@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "width": 500,
-  "height": 300,
-  "title": "COVID19 (2020)",
+  "height": 400,
+  "title": "COVID19 New Deaths (2020) according to Median Age",
   "data": {
     "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedCovidWorld.csv"
   },
