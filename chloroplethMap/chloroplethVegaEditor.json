@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "title": "COVID-19 Cases (2020) in Each Country",
-  "width": 600,
-  "height": 400,
+  "width": 700,
+  "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/chloroplethMap/ne_110m.json",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
