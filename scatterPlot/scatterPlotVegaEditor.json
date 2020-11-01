@@ -84,6 +84,7 @@
       "value": 0.2
     },
     "tooltip": [
+      {"field": "location", "type": "nominal", "title": "Country"},
       {"field": "continent", "type": "nominal", "title": "Continent"},
       {
         "field": "hospital_beds_per_thousand",
