@@ -1,6 +1,7 @@
 # Jessica Oh Hui Yu
 
 import pandas as pd
+import numpy as np
 import datetime
 
 def cleanData(filename):
@@ -47,9 +48,18 @@ def cleanData(filename):
                                                                            'female_smokers':'mean',
                                                                            'male_smokers':'mean',
                                                                            'hospital_beds_per_thousand':'mean'})
+    
+    # round age to integer
+    # df.round({'median _age': 0})
+    df['median_age'] = np.where((df['median_age'] < 0), 0, df['median_age']) # less than 10
+    df['median_age'] = np.where((df['median_age'] >= 10) & (df['median_age'] < 20) , 10, df['median_age'])
+    df['median_age'] = np.where((df['median_age'] >= 20) & (df['median_age'] < 30) , 20, df['median_age'])
+    df['median_age'] = np.where((df['median_age'] >= 30) & (df['median_age'] < 40) , 30, df['median_age'])
+    df['median_age'] = np.where((df['median_age'] >= 40) & (df['median_age'] < 50) , 40, df['median_age'])
+    df['median_age'] = np.where((df['median_age'] >= 50) & (df['median_age'] < 60) , 50, df['median_age'])
 
     # put into new file
-    newFileName = "cleanedMonthCovidWorld.csv"
+    newFileName = "cleanedCovidWorld.csv"
     df.to_csv(newFileName, index=False)
 
 
