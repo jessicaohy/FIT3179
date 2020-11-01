@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "width": 500,
-  "height": 300,
+  "height": 400,
+  "title": "COVID19 New Deaths (2020) according to Hospital Beds in each Continent",
   "data": {
     "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedCovidWorld.csv"
   },
@@ -76,7 +77,7 @@
               "#8538A6",
               "#1F3E99"
             ]
-          }
+          }, "title": "Continent"
         },
     "opacity": {
       "condition": {"selection": "continent_highlight", "value": 0.6},
