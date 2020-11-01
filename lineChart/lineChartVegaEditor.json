@@ -6,15 +6,78 @@
   "data": {
     "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedMonthCovidWorld.csv"
   },
+  "params": [
+    {
+      "name": "Location_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "United States of America",
+          "Brazil",
+          "India",
+          "China",
+          "Australia"
+        ],
+        "labels": [
+          "Show All",
+          "United States of America",
+          "Brazil",
+          "India",
+          "China",
+          "Australia"
+        ],
+        "name": "Location Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "Location_selection == null || datum.location==Location_selection"
+    }
+  ],
+  "selection": {
+    "location_highlight": {
+      "type": "multi",
+      "fields": ["location"],
+      "bind": "legend"
+    }
+  },
   "mark": {"type": "line", "point": true},
   "encoding": {
-    "x": {"field": "date"},
-    "y": {"field": "new_cases", "type": "quantitative"},
+    "x": {"field": "date", "title": "Date"},
+    "y": {"field": "new_cases", "type": "quantitative", "title": "New Cases"},
     "color": {
       "field": "location",
       "type": "nominal",
-      "scale": {"domain": ["United States of America", "Brazil", "India", "China", "Australia"], "range": ["#66CAF2", "#1F3E99", "#02A3A6", "#96CC92", "#8538A6"]}
-}
+      "scale": {
+        "domain": [
+          "United States of America",
+          "Brazil",
+          "India",
+          "China",
+          "Australia"
+        ],
+        "range": ["#66CAF2", "#1F3E99", "#02A3A6", "#96CC92", "#8538A6"]
+      }
+    },
+    "opacity": {
+      "condition": {"selection": "location_highlight", "value": 0.6},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "location", "type": "nominal", "title": "Location"},
+      {
+        "field": "date",
+        "title": "Date"
+      },
+      {
+        "field": "new_cases",
+        "type": "quantitative",
+        "format": ",",
+        "title": "New Cases"
+      }
+    ]
   },
   "config": {}
 }
