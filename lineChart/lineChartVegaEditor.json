@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width": 600,
+  "width": 550,
   "height": 400,
   "title": "COVID19 (2020)",
   "data": {
