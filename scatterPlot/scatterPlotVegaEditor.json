@@ -39,7 +39,7 @@
     },
     {
       "calculate": "datum.new_deaths/datum.new_cases * 1000",
-      "as": "Deaths per 1000 Cases"
+      "as": "New Deaths per 1000 Cases"
     }
   ],
   "selection": {
@@ -56,7 +56,7 @@
       "type": "quantitative",
       "title": "Hospital Beds per 1000 people"
     },
-    "y": {"field": "Deaths per 1000 Cases", "type": "quantitative"},
+    "y": {"field": "New Deaths per 1000 Cases", "type": "quantitative"},
     "color": {
           "field": "continent",
           "type": "nominal",
@@ -92,10 +92,10 @@
         "title": "Hospital Beds per 1000 people"
       },
       {
-        "field": "Deaths per 1000 Cases",
+        "field": "New Deaths per 1000 Cases",
         "type": "quantitative",
         "format": ",",
-        "title": "Deaths per 1000 Cases"
+        "title": "New Deaths per 1000 Cases"
       }
     ]
   },
