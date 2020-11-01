@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width": 300,
+  "width": 500,
   "height": 300,
   "data": {
     "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedCovidWorld.csv"
