@@ -61,8 +61,8 @@
       "field": "new_cases",
       "type": "quantitative",
       "title": "Cases",
-      "axis": {"tickCount": 7},
-      "scale": {"type": "log", "domain": [1, 100000000]}
+      "axis": {"tickCount": 6},
+      "scale": {"type": "log", "domain": [10, 10000000]}
     },
     "y": {
       "field": "new_deaths",
@@ -89,7 +89,7 @@
           "scale": {
             "type": "threshold",
             "domain": [10, 100, 500, 1000, 5000],
-            "range": [10, 50, 150, 200, 300, 500]
+            "range": [100, 200, 300, 400, 600, 800]
           },
           "legend": {"format": ".1s"}
         },
@@ -106,12 +106,12 @@
               "South America"
             ],
             "range": [
-              "#e41a1c",
-              "#984ea3",
-              "#ff7f00",
-              "#a6cee3",
-              "#377eb8",
-              "#a65628"
+              "#96CC92",
+              "#013543",
+              "#02A3A6",
+              "#66CAF2",
+              "#8E6BBF",
+              "#1F3E99"
             ]
           }
         },
