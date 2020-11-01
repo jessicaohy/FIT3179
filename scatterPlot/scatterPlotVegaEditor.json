@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedCovidWorld.csv"
+  },
+  "params": [
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "Oceania",
+          "South America"
+        ],
+        "labels": [
+          "Show All",
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "Oceania",
+          "South America"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "Continent_selection == null || datum.continent==Continent_selection"
+    },
+    {
+      "calculate": "datum.new_deaths/datum.new_cases * 1000",
+      "as": "Deaths per 1000 Cases"
+    }
+  ],
+  "selection": {
+    "continent_highlight": {
+      "type": "multi",
+      "fields": ["continent"],
+      "bind": "legend"
+    }
+  },
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": "hospital_beds_per_thousand",
+      "type": "quantitative",
+      "title": "Hospital Beds per 1000 people"
+    },
+    "y": {"field": "Deaths per 1000 Cases", "type": "quantitative"},
+    "color": {"field": "continent", "type": "nominal"},
+    "opacity": {
+      "condition": {"selection": "continent_highlight", "value": 0.6},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "continent", "type": "nominal", "title": "Continent"},
+      {
+        "field": "hospital_beds_per_thousand",
+        "type": "quantitative",
+        "format": ",",
+        "title": "Hospital Beds per 1000 people"
+      },
+      {
+        "field": "Deaths per 1000 Cases",
+        "type": "quantitative",
+        "format": ",",
+        "title": "Deaths per 1000 Cases"
+      }
+    ]
+  },
+  "config": {}
+}
