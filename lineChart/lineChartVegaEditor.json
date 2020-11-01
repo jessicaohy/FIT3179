@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width": 550,
-  "height": 400,
+  "width": 500,
+  "height": 300,
   "title": "COVID19 (2020)",
   "data": {
     "url": "https://raw.githubusercontent.com/jessicaohy/FIT3179/master/Data/cleanedMonthCovidWorld.csv"
